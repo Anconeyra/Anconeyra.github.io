@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portafolio profesional de Nyraroot - Full-Stack Developer & Cybersecurity Analyst">
+    <title>Nyraroot | Full-Stack Developer & Cybersecurity Analyst</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="shortcut icon" type="image/png" href="img/logo.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress-bar" id="scroll-progress"></div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scroll-to-top" aria-label="Volver arriba">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Terminal Toggle Button -->
+    <button class="terminal-toggle" id="terminal-toggle" aria-label="Abrir terminal">
+        <i class="fas fa-terminal"></i>
+    </button>
+
+    <!-- Terminal Modal -->
+    <div class="terminal-modal" id="terminal-modal">
+        <div class="terminal-header">
+            <div class="terminal-title">
+                <i class="fas fa-terminal"></i>
+                <span>root@nyraroot:~</span>
+            </div>
+            <button class="terminal-close" id="terminal-close">×</button>
+        </div>
+        <div class="terminal-body" id="terminal-body">
+            <div class="terminal-output" id="terminal-output">
+                <p class="welcome">🚀 Welcome to Nyraroot Terminal v1.0</p>
+                <p class="welcome-sub">Cybersecurity | Full-Stack Development</p>
+                <p>Type <span class="command-highlight">'help'</span> to see available commands</p>
+                <br>
+            </div>
+            <div class="terminal-input-line">
+                <span class="prompt">root@nyraroot:~$</span>
+                <input type="text" id="terminal-input" autocomplete="off" spellcheck="false">
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursor-follower"></div>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun"></i>
+    </button>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <img src="img/logo.png" alt="Nyraroot Logo" class="logo-img">
+                <span class="logo-text">Nyraroot</span>
+            </a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                <li><a href="#sobre-mi" class="nav-link">Sobre Mí</a></li>
+                <li><a href="#habilidades" class="nav-link">Habilidades</a></li>
+                <li><a href="#certificaciones" class="nav-link">Certificaciones</a></li>
+                <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <!-- Particles Canvas -->
+        <canvas id="particles-canvas"></canvas>
+        
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    <span>Disponible para oportunidades</span>
+                </div>
+                <h1 class="hero-title">
+                    <span class="greeting">¡Hola! Soy</span>
+                    <span class="name">Frank Anconeyra</span>
+                </h1>
+                <p class="hero-subtitle">Full-Stack Developer | Cybersecurity Analyst</p>
+                <p class="hero-description">
+                    Ingeniero de sistemas resilientes e inteligentes que conectan personas, 
+                    dispositivos y datos de forma segura y escalable.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#proyectos" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> Ver Proyectos
+                    </a>
+                    <a href="#contacto" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i> Contactar
+                    </a>
+                </div>
+                <div class="social-links">
+                    <a href="https://github.com/Anconeyra" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/frank-anconeyra" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:anconeyrafsuyo@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-image-wrapper">
+                    <div class="hero-image-bg"></div>
+                    <div class="hero-image-container">
+                        <img src="img/tu-foto.jpg" alt="Frank Anconeyra" class="hero-photo">
+                    </div>
+                    <div class="floating-badge badge-1">
+                        <i class="fab fa-react"></i>
+                    </div>
+                    <div class="floating-badge badge-2">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <div class="floating-badge badge-3">
+                        <i class="fab fa-aws"></i>
+                    </div>
+                    <div class="floating-badge badge-4">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="sobre-mi">
+        <div class="container">
+            <h2 class="section-title">Sobre Mí</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="tech-carousel">
+                        <div class="tech-carousel-bg"></div>
+                        <div class="tech-carousel-content">
+                            <div class="carousel-slide active">
+                                <i class="fab fa-react"></i>
+                                <span>React</span>
+                            </div>
+                            <div class="carousel-slide">
+                                <i class="fab fa-vuejs"></i>
+                                <span>Vue</span>
+                            </div>
+                            <div class="carousel-slide">
+                                <i class="fas fa-bolt"></i>
+                                <span>Svelte</span>
+                            </div>
+                            <div class="carousel-slide">
+                                <i class="fab fa-node-js"></i>
+                                <span>Node.js</span>
+                            </div>
+                            <div class="carousel-slide">
+                                <i class="fas fa-leaf"></i>
+                                <span>Spring</span>
+                            </div>
+                            <div class="carousel-slide">
+                                <i class="fab fa-python"></i>
+                                <span>Python</span>
+                            </div>
+                            <div class="carousel-slide">
+                                <i class="fab fa-java"></i>
+                                <span>Java</span>
+                            </div>
+                            <div class="carousel-slide">
+                                <i class="fab fa-aws"></i>
+                                <span>AWS</span>
+                            </div>
+                            <div class="carousel-slide">
+                                <i class="fab fa-docker"></i>
+                                <span>Docker</span>
+                            </div>
+                            <div class="carousel-slide">
+                                <i class="fas fa-dharmachakra"></i>
+                                <span>K8s</span>
+                            </div>
+                            <div class="carousel-slide">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>Flutter</span>
+                            </div>
+                            <div class="carousel-slide">
+                                <i class="fab fa-android"></i>
+                                <span>Kotlin</span>
+                            </div>
+                        </div>
+                        <div class="carousel-dots">
+                            <span class="dot active" data-slide="0"></span>
+                            <span class="dot" data-slide="1"></span>
+                            <span class="dot" data-slide="2"></span>
+                            <span class="dot" data-slide="3"></span>
+                            <span class="dot" data-slide="4"></span>
+                            <span class="dot" data-slide="5"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <div class="about-header">
+                        <h3>Frank Anconeyra</h3>
+                        <p class="about-title">Full-Stack Developer & Cybersecurity Analyst</p>
+                        <div class="cv-buttons">
+                            <a href="https://drive.google.com/file/d/1ymySfictqgYqEMlSGUziEUyjWUrGOwuK/view?usp=drive_link" target="_blank" class="btn btn-primary btn-cv">
+                                <i class="fas fa-file-pdf"></i> Descargar o Ver CV
+                            </a>
+                        </div>
+                    </div>
+                    <p>
+                        Soy un desarrollador Full-Stack y analista de ciberseguridad con experiencia 
+                        en la creación de aplicaciones web, móviles y sistemas seguros. Me especializo en 
+                        transformar ideas complejas en soluciones digitales intuitivas, eficientes y protegidas.
+                    </p>
+                    <p>
+                        Mi enfoque combina creatividad técnica, metodologías ágiles y mejores prácticas 
+                        de seguridad para entregar productos de alta calidad que superan las expectativas 
+                        del usuario y resisten amenazas modernas.
+                    </p>
+                    
+                    <div class="tech-stack">
+                        <h4 class="tech-stack-title">Tech Stack</h4>
+                        <div class="tech-groups">
+                            <div class="tech-group">
+                                <div class="tech-group-icon">
+                                    <i class="fas fa-laptop-code"></i>
+                                </div>
+                                <div class="tech-group-content">
+                                    <h5>Frontend</h5>
+                                    <div class="tech-items">
+                                        <span class="tech-item">React</span>
+                                        <span class="tech-item">Vue</span>
+                                        <span class="tech-item">Svelte</span>
+                                        <span class="tech-item">TypeScript</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tech-group">
+                                <div class="tech-group-icon">
+                                    <i class="fas fa-server"></i>
+                                </div>
+                                <div class="tech-group-content">
+                                    <h5>Backend</h5>
+                                    <div class="tech-items">
+                                        <span class="tech-item">Node.js</span>
+                                        <span class="tech-item">Spring</span>
+                                        <span class="tech-item">Python</span>
+                                        <span class="tech-item">Java</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tech-group">
+                                <div class="tech-group-icon">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </div>
+                                <div class="tech-group-content">
+                                    <h5>Móvil</h5>
+                                    <div class="tech-items">
+                                        <span class="tech-item">Flutter</span>
+                                        <span class="tech-item">Kotlin</span>
+                                        <span class="tech-item">Dart</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tech-group">
+                                <div class="tech-group-icon">
+                                    <i class="fas fa-cloud"></i>
+                                </div>
+                                <div class="tech-group-content">
+                                    <h5>Cloud & DevOps</h5>
+                                    <div class="tech-items">
+                                        <span class="tech-item">AWS</span>
+                                        <span class="tech-item">Docker</span>
+                                        <span class="tech-item">K8s</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-stats">
+                        <div class="stat">
+                            <span class="stat-number" data-target="14">0</span>
+                            <span class="stat-label">Repositorios</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" data-target="15">0</span>
+                            <span class="stat-label">Certificaciones</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" data-target="5">0</span>
+                            <span class="stat-label">Dominios</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="habilidades">
+        <div class="container">
+            <h2 class="section-title">Habilidades</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Frontend</h3>
+                    <p>Desarrollo de interfaces web modernas y responsivas</p>
+                    <div class="skill-tags">
+                        <span>React</span>
+                        <span>Vue</span>
+                        <span>Svelte</span>
+                        <span>TypeScript</span>
+                        <span>HTML/CSS</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>Backend</h3>
+                    <p>Construcción de APIs y lógica de servidor robusta</p>
+                    <div class="skill-tags">
+                        <span>Node.js</span>
+                        <span>Spring Boot</span>
+                        <span>Python</span>
+                        <span>Java</span>
+                        <span>C#</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Móvil</h3>
+                    <p>Desarrollo de aplicaciones nativas y multiplataforma</p>
+                    <div class="skill-tags">
+                        <span>Flutter</span>
+                        <span>Kotlin</span>
+                        <span>Dart</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud & DevOps</h3>
+                    <p>Infraestructura en la nube y automatización</p>
+                    <div class="skill-tags">
+                        <span>AWS</span>
+                        <span>Docker</span>
+                        <span>Kubernetes</span>
+                        <span>Serverless</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Bases de Datos</h3>
+                    <p>Gestión de datos SQL y NoSQL</p>
+                    <div class="skill-tags">
+                        <span>MySQL</span>
+                        <span>PostgreSQL</span>
+                        <span>MongoDB</span>
+                        <span>NoSQL</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Cybersecurity</h3>
+                    <p>Seguridad ofensiva y defensiva</p>
+                    <div class="skill-tags">
+                        <span>Wireshark</span>
+                        <span>OWASP</span>
+                        <span>Kali Linux</span>
+                        <span>Metasploit</span>
+                        <span>Snyk</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="certifications" id="certificaciones">
+        <div class="container">
+            <h2 class="section-title">Certificaciones</h2>
+            <p class="certifications-intro">📋 Más de 15 certificaciones profesionales</p>
+            
+            <div class="certifications-grid">
+                <div class="certification-category">
+                    <h3 class="certification-category-title">
+                        <i class="fas fa-shield-alt"></i> Cybersecurity
+                    </h3>
+                    <div class="certification-list">
+                        <div class="certification-item">
+                            <div class="certification-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="certification-info">
+                                <h4>Junior Cybersecurity Analyst Career Path</h4>
+                                <p>Cisco • 2025</p>
+                            </div>
+                        </div>
+                        <div class="certification-item">
+                            <div class="certification-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="certification-info">
+                                <h4>Endpoint Security</h4>
+                                <p>Cisco • 2025</p>
+                            </div>
+                        </div>
+                        <div class="certification-item">
+                            <div class="certification-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="certification-info">
+                                <h4>Network Defense</h4>
+                                <p>Cisco • 2025</p>
+                            </div>
+                        </div>
+                        <div class="certification-item">
+                            <div class="certification-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="certification-info">
+                                <h4>Introduction to Cybersecurity</h4>
+                                <p>Cisco • 2025</p>
+                            </div>
+                        </div>
+                        <div class="certification-item">
+                            <div class="certification-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="certification-info">
+                                <h4>Lifelong Learning 2025 & 2026</h4>
+                                <p>Certiprof • 2025-2026</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="certification-category">
+                    <h3 class="certification-category-title">
+                        <i class="fas fa-cloud"></i> Cloud Computing - AWS
+                    </h3>
+                    <div class="certification-list">
+                        <div class="certification-item">
+                            <div class="certification-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="certification-info">
+                                <h4>Getting Started with Databases</h4>
+                                <p>AWS • 2025</p>
+                            </div>
+                        </div>
+                        <div class="certification-item">
+                            <div class="certification-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="certification-info">
+                                <h4>Getting Started with Serverless</h4>
+                                <p>AWS • 2025</p>
+                            </div>
+                        </div>
+                        <div class="certification-item">
+                            <div class="certification-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="certification-info">
+                                <h4>Introduction to Cloud 101</h4>
+                                <p>AWS • 2025</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="certification-category">
+                    <h3 class="certification-category-title">
+                        <i class="fas fa-network-wired"></i> Networking
+                    </h3>
+                    <div class="certification-list">
+                        <div class="certification-item">
+                            <div class="certification-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="certification-info">
+                                <h4>Networking Basics</h4>
+                                <p>Cisco • 2025</p>
+                            </div>
+                        </div>
+                        <div class="certification-item">
+                            <div class="certification-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="certification-info">
+                                <h4>Networking Devices and Initial Configuration</h4>
+                                <p>Cisco • 2025</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="certification-category">
+                    <h3 class="certification-category-title">
+                        <i class="fab fa-python"></i> Python Programming
+                    </h3>
+                    <div class="certification-list">
+                        <div class="certification-item">
+                            <div class="certification-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="certification-info">
+                                <h4>Python Essentials 1</h4>
+                                <p>Cisco • 2025</p>
+                            </div>
+                        </div>
+                        <div class="certification-item">
+                            <div class="certification-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="certification-info">
+                                <h4>Python Essentials 2</h4>
+                                <p>Cisco • 2025</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="certification-category">
+                    <h3 class="certification-category-title">
+                        <i class="fas fa-building"></i> Enterprise
+                    </h3>
+                    <div class="certification-list">
+                        <div class="certification-item">
+                            <div class="certification-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="certification-info">
+                                <h4>Discovering SAP SuccessFactors HCM Solutions</h4>
+                                <p>SAP • 2025</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Credly Button -->
+            <div class="credly-section">
+                <a href="https://www.credly.com/users/frank-anconeyra/badges" target="_blank" class="btn-credly">
+                    <i class="fas fa-award"></i>
+                    <span>Ver Certificaciones en Credly</span>
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="proyectos">
+        <div class="container">
+            <h2 class="section-title">Proyectos</h2>
+            <div class="projects-grid">
+                <!-- Greenfil -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-image-placeholder">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Greenfil</h3>
+                        <p>Sistema de gestión frontend y backend para control de procesos. Tecnologías modernas y arquitectura escalable.</p>
+                        <div class="project-tags">
+                            <span><i class="fab fa-flutter"></i> Flutter</span>
+                            <span><i class="fab fa-microsoft"></i> C#</span>
+                            <span><i class="fas fa-cube"></i> .NET</span>
+                            <span><i class="fas fa-server"></i> Backend</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Anconeyra/Flutter-grenfil" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> Frontend
+                            </a>
+                            <a href="https://github.com/Anconeyra/C-backend-greenfi" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> Backend
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MOSS -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-image-placeholder">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>MOSS</h3>
+                        <p>Proyecto desarrollado en Python para análisis y procesamiento de datos con técnicas avanzadas.</p>
+                        <div class="project-tags">
+                            <span><i class="fab fa-python"></i> Python</span>
+                            <span><i class="fas fa-chart-line"></i> Data Analysis</span>
+                            <span><i class="fas fa-brain"></i> ML</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Anconeyra/MOSS" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> Ver Código
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- M. Evaluación -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-image-placeholder">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Sistema de Evaluación</h3>
+                        <p>Plataforma completa para gestión y evaluación con frontend en JavaScript y backend en Python.</p>
+                        <div class="project-tags">
+                            <span><i class="fab fa-js"></i> JavaScript</span>
+                            <span><i class="fab fa-python"></i> Python</span>
+                            <span><i class="fas fa-code"></i> Full-Stack</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Anconeyra/Fronted-M.Evaluacion" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> Frontend
+                            </a>
+                            <a href="https://github.com/Anconeyra/Backend-M.Evaluacion" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> Backend
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LiteConta-SUNAT -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-image-placeholder">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>LiteConta-SUNAT</h3>
+                        <p>Sistema contable que minimiza la carga cognitiva del empresario mediante un flujo de trabajo simple. Integración con SUNAT.</p>
+                        <div class="project-tags">
+                            <span><i class="fas fa-leaf"></i> Blade</span>
+                            <span><i class="fab fa-php"></i> PHP</span>
+                            <span><i class="fas fa-calculator"></i> Contabilidad</span>
+                            <span><i class="fas fa-file-invoice"></i> SUNAT</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Anconeyra/LiteConta-SUNAT" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> Ver Código
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CRM Django -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-image-placeholder">
+                            <i class="fas fa-users"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>CRM Django</h3>
+                        <p>Sistema de gestión de relaciones con clientes desarrollado con Django y Python.</p>
+                        <div class="project-tags">
+                            <span><i class="fab fa-python"></i> Python</span>
+                            <span><i class="fab fa-cuttlefish"></i> Django</span>
+                            <span><i class="fas fa-users"></i> CRM</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Anconeyra/Crm-Django" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> Ver Código
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gestor de Inventarios -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-image-placeholder">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Gestión de Inventarios</h3>
+                        <p>Sistema para control y gestión de inventarios con interfaz web moderna.</p>
+                        <div class="project-tags">
+                            <span><i class="fab fa-html5"></i> HTML</span>
+                            <span><i class="fab fa-css3-alt"></i> CSS</span>
+                            <span><i class="fab fa-js"></i> JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Anconeyra/Gesti-n-de-Inventarios" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> Ver Código
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contacto">
+        <div class="container">
+            <h2 class="section-title">Contacto</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>¿Trabajamos juntos?</h3>
+                    <p>Estoy disponible para proyectos freelance y oportunidades laborales. ¡Contáctame!</p>
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>anconeyrafsuyo@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Arequipa, Perú</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>+51 917 394 464</span>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Tu Nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Tu Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="5" placeholder="¿En qué puedo ayudarte?" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 Nyraroot - Frank Anconeyra. Todos los derechos reservados.</p>
+                <div class="social-links">
+                    <a href="https://github.com/Anconeyra" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/frank-anconeyra" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:anconeyrafsuyo@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
