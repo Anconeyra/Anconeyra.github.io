@@ -1,5 +1,6 @@
 # Opencode
 .atl
+openspec/
 
 # dependencies
 /node_modules
