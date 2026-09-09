@@ -8,8 +8,9 @@ function useCountUp(target: number, active: boolean) {
   useEffect(() => {
     if (!active) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setValue(target);
-      return;
+      // Defer to next tick to satisfy react-hooks/set-state-in-effect
+      const id = requestAnimationFrame(() => setValue(target));
+      return () => cancelAnimationFrame(id);
     }
     let raf: number;
     let start: number | null = null;
