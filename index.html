@@ -5,6 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portafolio profesional de Nyraroot - Full-Stack Developer & Cybersecurity Analyst">
     <title>Nyraroot | Full-Stack Developer & Cybersecurity Analyst</title>
+
+    <!-- Apply saved/system theme before first paint to avoid flash (FOUC) -->
+    <script>
+        (function () {
+            var theme = 'light';
+            try {
+                theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            } catch (e) {
+                theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Nyraroot | Full-Stack Developer & Cybersecurity Analyst">
+    <meta property="og:description" content="Portafolio profesional de Nyraroot - Full-Stack Developer & Cybersecurity Analyst">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://anconeyra.github.io/">
+    <meta property="og:image" content="https://anconeyra.github.io/img/tu-foto.jpg">
+    <meta property="og:site_name" content="Nyraroot">
+    <meta property="og:locale" content="es_PE">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Nyraroot | Full-Stack Developer & Cybersecurity Analyst">
+    <meta name="twitter:description" content="Portafolio profesional de Nyraroot - Full-Stack Developer & Cybersecurity Analyst">
+    <meta name="twitter:image" content="https://anconeyra.github.io/img/tu-foto.jpg">
+
+    <!-- Structured Data (Person) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Frank Anconeyra",
+        "alternateName": "Nyraroot",
+        "jobTitle": "Full-Stack Developer & Cybersecurity Analyst",
+        "url": "https://anconeyra.github.io/",
+        "image": "https://anconeyra.github.io/img/tu-foto.jpg",
+        "email": "mailto:anconeyrafsuyo@gmail.com",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Arequipa",
+            "addressCountry": "PE"
+        },
+        "sameAs": [
+            "https://github.com/Anconeyra",
+            "https://linkedin.com/in/frank-anconeyra"
+        ],
+        "knowsAbout": [
+            "Full-Stack Development",
+            "Cybersecurity",
+            "Cloud Computing",
+            "DevOps"
+        ]
+    }
+    </script>
+
     <link rel="icon" type="image/png" href="img/logo.png">
     <link rel="shortcut icon" type="image/png" href="img/logo.png">
     <link rel="stylesheet" href="css/styles.css">
@@ -121,7 +179,7 @@
                 <div class="hero-image-wrapper">
                     <div class="hero-image-bg"></div>
                     <div class="hero-image-container">
-                        <img src="img/tu-foto.jpg" alt="Frank Anconeyra" class="hero-photo">
+                        <img src="img/tu-foto.jpg" alt="Frank Anconeyra" class="hero-photo" loading="lazy">
                     </div>
                     <div class="floating-badge badge-1">
                         <i class="fab fa-react"></i>
@@ -763,6 +821,7 @@
                     <button type="submit" class="btn btn-primary btn-block">
                         <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
                     </button>
+                    <div class="form-feedback" id="form-feedback" role="status" aria-live="polite"></div>
                 </form>
             </div>
         </div>

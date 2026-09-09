@@ -1779,6 +1779,29 @@ img {
     resize: vertical;
 }
 
+/* Form Inline Feedback */
+.form-feedback {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--accent-color);
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    display: none;
+}
+
+.form-feedback.error {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+.form-feedback.visible {
+    display: block;
+}
+
 /* ========================================
    Footer
 ======================================== */
@@ -2237,5 +2260,17 @@ img {
 
     .theme-toggle i {
         font-size: 1.25rem;
+    }
+}
+
+/* ========================================
+   Reduced Motion Accessibility
+======================================== */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }

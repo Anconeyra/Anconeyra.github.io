@@ -1,4 +1,71 @@
 // ========================================
+// Shared Data (single source of truth)
+// ========================================
+const DATA = {
+    skills: [
+        { name: 'Frontend', items: ['React', 'Vue', 'Svelte', 'TypeScript', 'HTML/CSS'] },
+        { name: 'Backend', items: ['Node.js', 'Spring Boot', 'Python', 'Java', 'C#'] },
+        { name: 'Mobile', items: ['Flutter', 'Kotlin', 'Dart'] },
+        { name: 'Cloud & DevOps', items: ['AWS', 'Docker', 'Kubernetes', 'Serverless'] },
+        { name: 'Databases', items: ['MySQL', 'PostgreSQL', 'MongoDB', 'NoSQL'] },
+        { name: 'Cybersecurity', items: ['Wireshark', 'OWASP', 'Kali Linux', 'Metasploit', 'Snyk'] }
+    ],
+    projects: [
+        { name: 'Greenfil', icon: '🌿', tech: 'Flutter + C# + .NET', description: 'Management system with scalable architecture' },
+        { name: 'MOSS', icon: '🧠', tech: 'Python + Data Analysis + ML', description: 'Data processing with advanced techniques' },
+        { name: 'Sistema de Evaluación', icon: '📋', tech: 'JavaScript + Python', description: 'Full-stack evaluation platform' },
+        { name: 'LiteConta-SUNAT', icon: '🧮', tech: 'PHP + Blade', description: 'Accounting system with SUNAT integration' },
+        { name: 'CRM Django', icon: '👥', tech: 'Python + Django', description: 'Customer relationship management' },
+        { name: 'Gestión de Inventarios', icon: '📦', tech: 'HTML + CSS + JS', description: 'Inventory control system' }
+    ],
+    certifications: [
+        {
+            category: 'Cybersecurity',
+            count: 5,
+            items: [
+                { name: 'Junior Cybersecurity Analyst', org: 'Cisco', year: '2025' },
+                { name: 'Endpoint Security', org: 'Cisco', year: '2025' },
+                { name: 'Network Defense', org: 'Cisco', year: '2025' },
+                { name: 'Introduction to Cybersecurity', org: 'Cisco', year: '2025' },
+                { name: 'Lifelong Learning 2025 & 2026', org: 'Certiprof', year: '2025-2026' }
+            ]
+        },
+        {
+            category: 'Cloud - AWS',
+            count: 3,
+            items: [
+                { name: 'Getting Started with Databases', org: 'AWS', year: '2025' },
+                { name: 'Getting Started with Serverless', org: 'AWS', year: '2025' },
+                { name: 'Introduction to Cloud 101', org: 'AWS', year: '2025' }
+            ]
+        },
+        {
+            category: 'Networking',
+            count: 2,
+            items: [
+                { name: 'Networking Basics', org: 'Cisco', year: '2025' },
+                { name: 'Networking Devices', org: 'Cisco', year: '2025' }
+            ]
+        },
+        {
+            category: 'Python',
+            count: 2,
+            items: [
+                { name: 'Python Essentials 1', org: 'Cisco', year: '2025' },
+                { name: 'Python Essentials 2', org: 'Cisco', year: '2025' }
+            ]
+        },
+        {
+            category: 'Enterprise',
+            count: 1,
+            items: [
+                { name: 'SAP SuccessFactors', org: 'SAP', year: '2025' }
+            ]
+        }
+    ]
+};
+
+// ========================================
 // Initialize All Features
 // ========================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -56,26 +123,38 @@ function initCustomCursor() {
     const follower = document.getElementById('cursor-follower');
     
     if (!cursor || !follower) return;
-    
+
+    // Skip on touch/coarse pointer devices and reduced-motion preference
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
     let posX = 0, posY = 0;
     let mouseX = 0, mouseY = 0;
-    
-    // Smooth follow
-    setInterval(() => {
+    let rafId = null;
+
+    // Smooth follow via requestAnimationFrame (starts on first mousemove)
+    function animateCursor() {
         posX += (mouseX - posX) / 9;
         posY += (mouseY - posY) / 9;
-        
+
         cursor.style.left = mouseX + 'px';
         cursor.style.top = mouseY + 'px';
-        
+
         follower.style.left = posX + 'px';
         follower.style.top = posY + 'px';
-    }, 1000 / 60);
-    
+
+        rafId = requestAnimationFrame(animateCursor);
+    }
+
     // Mouse move
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
+
+        // Start the rAF loop on first mouse movement
+        if (rafId === null) {
+            rafId = requestAnimationFrame(animateCursor);
+        }
     });
     
     // Hover effect on interactive elements
@@ -127,14 +206,27 @@ function initScrollAnimations() {
 // ========================================
 function initParallax() {
     const parallaxElements = document.querySelectorAll('.hero-image-wrapper, .floating-badge, .about-image-wrapper');
-    
+
+    if (parallaxElements.length === 0) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // Throttle scroll handler to at most once per frame via requestAnimationFrame
+    let ticking = false;
+
     window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        
-        parallaxElements.forEach((el, index) => {
-            const speed = 0.1 + (index * 0.05);
-            const yPos = -(scrolled * speed);
-            el.style.transform = `translateY(${yPos}px)`;
+        if (ticking) return;
+        ticking = true;
+
+        requestAnimationFrame(() => {
+            const scrolled = window.pageYOffset;
+
+            parallaxElements.forEach((el, index) => {
+                const speed = 0.1 + (index * 0.05);
+                const yPos = -(scrolled * speed);
+                el.style.transform = `translateY(${yPos}px)`;
+            });
+
+            ticking = false;
         });
     });
 }
@@ -327,24 +419,28 @@ function initContactForm() {
         const email = document.getElementById('email').value;
         const message = document.getElementById('message').value;
         
-        // Crear mensaje formateado
-        const whatsappMessage = `👋 *Nuevo Mensaje del Portafolio*%0A%0A` +
-                               `*Nombre:* ${name}%0A` +
-                               `*Email:* ${email}%0A%0A` +
-                               `*Mensaje:*%0A${message}%0A%0A` +
+        // Crear mensaje formateado (real newlines; encodeURIComponent handles special chars)
+        const whatsappMessage = `👋 *Nuevo Mensaje del Portafolio*\n\n` +
+                               `*Nombre:* ${name}\n` +
+                               `*Email:* ${email}\n\n` +
+                               `*Mensaje:*\n${message}\n\n` +
                                `_Enviado desde el portafolio de Nyraroot_`;
-        
+
         // Crear URL de WhatsApp
-        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
-        
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
         // Abrir WhatsApp en nueva pestaña
         window.open(whatsappUrl, '_blank');
-        
+
         // Resetear formulario
         contactForm.reset();
-        
-        // Mostrar mensaje de éxito
-        alert('¡Redirigiendo a WhatsApp! Por favor envía el mensaje desde allí.');
+
+        // Mostrar feedback en línea
+        const feedback = document.getElementById('form-feedback');
+        if (feedback) {
+            feedback.textContent = '¡Redirigiendo a WhatsApp! Por favor envía el mensaje desde allí.';
+            feedback.classList.add('visible');
+        }
     });
 }
 
@@ -439,81 +535,38 @@ function initTerminal() {
         },
         'skills': {
             description: 'List technical skills',
-            output: `
-<span class="info">Technical Skills:</span>
-
-<span class="warning">Frontend:</span>
-  React • Vue • Svelte • TypeScript • HTML/CSS
-
-<span class="warning">Backend:</span>
-  Node.js • Spring Boot • Python • Java • C#
-
-<span class="warning">Mobile:</span>
-  Flutter • Kotlin • Dart
-
-<span class="warning">Cloud & DevOps:</span>
-  AWS • Docker • Kubernetes • Serverless
-
-<span class="warning">Databases:</span>
-  MySQL • PostgreSQL • MongoDB • NoSQL
-
-<span class="warning">Cybersecurity:</span>
-  Wireshark • OWASP • Kali Linux • Metasploit • Snyk`
+            output: () => {
+                let html = '<span class="info">Technical Skills:</span>';
+                DATA.skills.forEach(skill => {
+                    html += `\n\n<span class="warning">${skill.name}:</span>\n  ${skill.items.join(' • ')}`;
+                });
+                return html;
+            }
         },
         'projects': {
             description: 'Show projects list',
-            output: `
-<span class="info">Projects:</span>
-
-<span class="success">🌿 Greenfil</span> - Flutter + C# + .NET
-  Management system with scalable architecture
-
-<span class="success">🧠 MOSS</span> - Python + Data Analysis + ML
-  Data processing with advanced techniques
-
-<span class="success">📋 Sistema de Evaluación</span> - JavaScript + Python
-  Full-stack evaluation platform
-
-<span class="success">🧮 LiteConta-SUNAT</span> - PHP + Blade
-  Accounting system with SUNAT integration
-
-<span class="success">👥 CRM Django</span> - Python + Django
-  Customer relationship management
-
-<span class="success">📦 Gestión de Inventarios</span> - HTML + CSS + JS
-  Inventory control system
-
-<span class="info">Type 'projects --all' for more details</span>`
+            output: () => {
+                let html = '<span class="info">Projects:</span>';
+                DATA.projects.forEach(project => {
+                    html += `\n\n<span class="success">${project.icon} ${project.name}</span> - ${project.tech}\n  ${project.description}`;
+                });
+                html += `\n\n<span class="info">Type 'projects --all' for more details</span>`;
+                return html;
+            }
         },
         'certifications': {
             description: 'Show certifications',
-            output: `
-<span class="info">Certifications (15+):</span>
-
-<span class="warning">Cybersecurity (5):</span>
-  ✓ Junior Cybersecurity Analyst - Cisco 2025
-  ✓ Endpoint Security - Cisco 2025
-  ✓ Network Defense - Cisco 2025
-  ✓ Introduction to Cybersecurity - Cisco 2025
-  ✓ Lifelong Learning 2025 & 2026 - Certiprof
-
-<span class="warning">Cloud - AWS (3):</span>
-  ✓ Getting Started with Databases - AWS 2025
-  ✓ Getting Started with Serverless - AWS 2025
-  ✓ Introduction to Cloud 101 - AWS 2025
-
-<span class="warning">Networking (2):</span>
-  ✓ Networking Basics - Cisco 2025
-  ✓ Networking Devices - Cisco 2025
-
-<span class="warning">Python (2):</span>
-  ✓ Python Essentials 1 - Cisco 2025
-  ✓ Python Essentials 2 - Cisco 2025
-
-<span class="warning">Enterprise (1):</span>
-  ✓ SAP SuccessFactors - SAP 2025
-
-<span class="info">Visit Credly for verified badges!</span>`
+            output: () => {
+                let html = '<span class="info">Certifications (15+):</span>';
+                DATA.certifications.forEach(cert => {
+                    html += `\n\n<span class="warning">${cert.category} (${cert.count}):</span>`;
+                    cert.items.forEach(item => {
+                        html += `\n  ✓ ${item.name} - ${item.org} ${item.year}`;
+                    });
+                });
+                html += '\n\n<span class="info">Visit Credly for verified badges!</span>';
+                return html;
+            }
         },
         'contact': {
             description: 'Show contact information',
@@ -623,9 +676,13 @@ function initTerminal() {
     }
 
     function executeCommand(cmd) {
-        // Mostrar comando ingresado
+        // Mostrar comando ingresado (seguro: el texto del usuario se inserta como texto plano, no como HTML)
         const commandLine = document.createElement('div');
-        commandLine.innerHTML = `<span class="prompt">root@nyraroot:~$</span> ${cmd}`;
+        const promptSpan = document.createElement('span');
+        promptSpan.className = 'prompt';
+        promptSpan.textContent = 'root@nyraroot:~$';
+        commandLine.appendChild(promptSpan);
+        commandLine.append(' ' + cmd);
         terminalOutput.appendChild(commandLine);
 
         // Procesar comando
@@ -678,26 +735,42 @@ function initTerminal() {
 function initParticles() {
     const canvas = document.getElementById('particles-canvas');
     if (!canvas) return;
-    
+
+    // Skip on devices that prefer reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
     const ctx = canvas.getContext('2d');
     let particlesArray = [];
     let animationId;
-    
-    // Configurar canvas
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    
+
+    // Simulation space is CSS pixels; the backing store scales by devicePixelRatio
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    let dpr = 1;
+
     // Mouse interaction
     let mouse = {
         x: null,
         y: null,
         radius: 150
     };
-    
+
+    function setCanvasSize() {
+        dpr = window.devicePixelRatio || 1;
+        width = window.innerWidth;
+        height = window.innerHeight;
+
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    setCanvasSize();
+
     window.addEventListener('mousemove', (event) => {
         const heroSection = document.querySelector('.hero');
         const rect = heroSection.getBoundingClientRect();
-        
+
         if (event.clientY >= rect.top && event.clientY <= rect.bottom) {
             mouse.x = event.x - rect.left;
             mouse.y = event.y - rect.top;
@@ -706,12 +779,12 @@ function initParticles() {
             mouse.y = null;
         }
     });
-    
+
     // Clase Partícula
     class Particle {
         constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
             this.size = Math.random() * 3 + 1;
             this.baseX = this.x;
             this.baseY = this.y;
@@ -720,7 +793,7 @@ function initParticles() {
             this.speedY = (Math.random() * 1) - 0.5;
             this.color = `rgba(${Math.random() > 0.5 ? '102, 126, 234' : '118, 75, 162'}, ${Math.random() * 0.5 + 0.3})`;
         }
-        
+
         draw() {
             ctx.fillStyle = this.color;
             ctx.beginPath();
@@ -728,97 +801,130 @@ function initParticles() {
             ctx.closePath();
             ctx.fill();
         }
-        
+
         update() {
             // Movimiento básico
             this.x += this.speedX;
             this.y += this.speedY;
-            
+
             // Rebote en bordes
-            if (this.x > canvas.width || this.x < 0) {
+            if (this.x > width || this.x < 0) {
                 this.speedX *= -1;
             }
-            if (this.y > canvas.height || this.y < 0) {
+            if (this.y > height || this.y < 0) {
                 this.speedY *= -1;
             }
-            
+
             // Interacción con mouse
             if (mouse.x != null) {
                 let dx = mouse.x - this.x;
                 let dy = mouse.y - this.y;
                 let distance = Math.sqrt(dx * dx + dy * dy);
-                
+
                 if (distance < mouse.radius) {
                     const forceDirectionX = dx / distance;
                     const forceDirectionY = dy / distance;
                     const force = (mouse.radius - distance) / mouse.radius;
                     const directionX = forceDirectionX * force * this.density;
                     const directionY = forceDirectionY * force * this.density;
-                    
+
                     this.x -= directionX;
                     this.y -= directionY;
                 }
             }
         }
     }
-    
+
     // Inicializar partículas
     function init() {
         particlesArray = [];
-        const numberOfParticles = (canvas.width * canvas.height) / 9000;
-        
+        const numberOfParticles = (width * height) / 9000;
+
         for (let i = 0; i < numberOfParticles; i++) {
             particlesArray.push(new Particle());
         }
     }
-    
-    // Conectar partículas con líneas
+
+    // Conectar partículas con líneas usando una cuadrícula espacial
+    // (solo se comparan celdas adyacentes, no todos los pares)
     function connect() {
+        const thresholdSq = (width / 7) * (height / 7);
+        const cellSize = Math.sqrt(thresholdSq);
+
+        // Reconstruir la cuadrícula en cada frame
+        const grid = new Map();
+        for (let i = 0; i < particlesArray.length; i++) {
+            const p = particlesArray[i];
+            const key = Math.floor(p.x / cellSize) + ',' + Math.floor(p.y / cellSize);
+            if (!grid.has(key)) grid.set(key, []);
+            grid.get(key).push(i);
+        }
+
         let opacityValue = 1;
         for (let a = 0; a < particlesArray.length; a++) {
-            for (let b = a; b < particlesArray.length; b++) {
-                let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) +
-                               ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
-                
-                if (distance < (canvas.width / 7) * (canvas.height / 7)) {
-                    opacityValue = 1 - (distance / 20000);
-                    ctx.strokeStyle = `rgba(102, 126, 234, ${opacityValue * 0.2})`;
-                    ctx.lineWidth = 1;
-                    ctx.beginPath();
-                    ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-                    ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
-                    ctx.stroke();
+            const p = particlesArray[a];
+            const cellX = Math.floor(p.x / cellSize);
+            const cellY = Math.floor(p.y / cellSize);
+
+            // Revisar solo la celda propia y las 8 vecinas
+            for (let gx = -1; gx <= 1; gx++) {
+                for (let gy = -1; gy <= 1; gy++) {
+                    const neighbors = grid.get((cellX + gx) + ',' + (cellY + gy));
+                    if (!neighbors) continue;
+
+                    for (let k = 0; k < neighbors.length; k++) {
+                        const b = neighbors[k];
+                        if (b <= a) continue; // evita duplicados y auto-conexiones
+
+                        const q = particlesArray[b];
+                        const dx = p.x - q.x;
+                        const dy = p.y - q.y;
+                        const distance = dx * dx + dy * dy;
+
+                        if (distance < thresholdSq) {
+                            opacityValue = 1 - (distance / 20000);
+                            ctx.strokeStyle = `rgba(102, 126, 234, ${opacityValue * 0.2})`;
+                            ctx.lineWidth = 1;
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(q.x, q.y);
+                            ctx.stroke();
+                        }
+                    }
                 }
             }
         }
     }
-    
+
     // Animación
     function animate() {
         animationId = requestAnimationFrame(animate);
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
+        ctx.clearRect(0, 0, width, height);
+
         for (let i = 0; i < particlesArray.length; i++) {
             particlesArray[i].draw();
             particlesArray[i].update();
         }
         connect();
     }
-    
-    // Resize handler
+
+    // Resize handler (debounced: se ejecuta al dejar de redimensionar)
+    let resizeTimeout;
     window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        mouse.radius = 150;
-        init();
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            setCanvasSize();
+            mouse.radius = 150;
+            init();
+        }, 200);
     });
-    
+
     // Mouse out
     window.addEventListener('mouseout', () => {
         mouse.x = null;
         mouse.y = null;
     });
-    
+
     // Iniciar
     init();
     animate();
