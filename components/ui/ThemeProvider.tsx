@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
@@ -21,6 +22,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const initial: Theme = saved ?? (prefersDark ? "dark" : "light");
 
+    // Sync with pre-paint FOUC script — must read persisted preference
     setTheme(initial);
     document.documentElement.setAttribute("data-theme", initial);
     setMounted(true);

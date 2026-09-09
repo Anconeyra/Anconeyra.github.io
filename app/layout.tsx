@@ -4,6 +4,9 @@ import "./globals.css";
 import { personJsonLd } from "@/lib/data/portfolio";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import ThemeToggle from "@/components/ui/ThemeToggle";
+import CustomCursor from "@/components/ui/CustomCursor";
+import ScrollProgress from "@/components/ui/ScrollProgress";
+import ScrollToTop from "@/components/ui/ScrollToTop";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -64,7 +67,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="flex min-h-full flex-col font-[var(--font-poppins)]">
         <ThemeProvider>
+          <ScrollProgress />
+          <CustomCursor />
           {children}
+          <ScrollToTop />
           <ThemeToggle />
         </ThemeProvider>
       </body>
