@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { personJsonLd } from "@/lib/data/portfolio";
+import { ThemeProvider } from "@/components/ui/ThemeProvider";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -60,7 +62,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: foucScript }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
       </head>
-      <body className="flex min-h-full flex-col font-[var(--font-poppins)]">{children}</body>
+      <body className="flex min-h-full flex-col font-[var(--font-poppins)]">
+        <ThemeProvider>
+          {children}
+          <ThemeToggle />
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
