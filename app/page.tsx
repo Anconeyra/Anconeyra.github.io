@@ -5,6 +5,7 @@ import About from "@/components/about/About";
 import SkillsGrid from "@/components/skills/SkillsGrid";
 import CertificationsGrid from "@/components/certifications/CertificationsGrid";
 import ProjectsGrid from "@/components/projects/ProjectsGrid";
+import Terminal from "@/components/terminal/Terminal";
 
 export const dynamic = "force-static";
 
@@ -34,6 +35,7 @@ export default function Home() {
         </section>
       </main>
       <Footer />
+      <Terminal />
     </>
   );
 }
