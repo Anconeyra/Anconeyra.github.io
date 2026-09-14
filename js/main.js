@@ -290,73 +290,102 @@ function initTechCarousel() {
 }
 
 // ========================================
-// Navigation
+// Navigation — Professional Header
 // ========================================
 function initNavigation() {
     const navbar = document.getElementById('navbar');
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
-    
-    // Toggle mobile menu
+    const sections = document.querySelectorAll('section[id]');
+
+    // --- Sliding indicator helper ---
+    function moveIndicator(activeLink) {
+        if (!activeLink || window.innerWidth <= 768) return;
+        const rect = activeLink.getBoundingClientRect();
+        const menuRect = navMenu.getBoundingClientRect();
+        const left = rect.left - menuRect.left;
+        const width = rect.width;
+        navMenu.style.setProperty('--indicator-left', left + 'px');
+        navMenu.style.setProperty('--indicator-width', width + 'px');
+    }
+
+    // --- Toggle mobile menu + hamburger animation ---
     navToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
+        const isActive = navMenu.classList.toggle('active');
+        navToggle.classList.toggle('active', isActive);
+        document.body.style.overflow = isActive ? 'hidden' : '';
     });
-    
-    // Close mobile menu when clicking on a link
+
+    // Close mobile menu on link click
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             navMenu.classList.remove('active');
+            navToggle.classList.remove('active');
+            document.body.style.overflow = '';
         });
     });
-    
-    // Change navbar on scroll
+
+    // --- Scroll effects ---
+    let ticking = false;
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                // Navbar compact state
+                navbar.classList.toggle('scrolled', window.scrollY > 50);
+                // Active section highlight
+                highlightNavLink();
+                ticking = false;
+            });
+            ticking = true;
         }
     });
-    
-    // Active navigation link
-    const sections = document.querySelectorAll('section[id]');
-    
+
+    // --- Scroll-spy with sliding indicator ---
     function highlightNavLink() {
         const scrollY = window.pageYOffset;
-        
+        let currentLink = null;
+
         sections.forEach(section => {
             const sectionHeight = section.offsetHeight;
             const sectionTop = section.offsetTop - 100;
             const sectionId = section.getAttribute('id');
             const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
-            
-            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                navLinks.forEach(link => link.classList.remove('active'));
-                if (navLink) {
-                    navLink.classList.add('active');
-                }
+
+            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                currentLink = navLink;
             }
         });
+
+        navLinks.forEach(link => link.classList.remove('active'));
+        if (currentLink) {
+            currentLink.classList.add('active');
+            moveIndicator(currentLink);
+        } else {
+            // Reset indicator when at top
+            navMenu.style.setProperty('--indicator-width', '0px');
+        }
     }
-    
-    window.addEventListener('scroll', highlightNavLink);
-    
-    // Smooth scroll for anchor links
+
+    // Position indicator on resize
+    window.addEventListener('resize', () => {
+        const active = document.querySelector('.nav-link.active');
+        if (active) moveIndicator(active);
+    });
+
+    // --- Smooth scroll for anchor links ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
-            
             if (targetId === '#') return;
-            
+
             const targetElement = document.querySelector(targetId);
-            
             if (targetElement) {
                 const headerOffset = 80;
                 const elementPosition = targetElement.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-    
+
                 window.scrollTo({
                     top: offsetPosition,
                     behavior: 'smooth'
@@ -364,6 +393,9 @@ function initNavigation() {
             }
         });
     });
+
+    // Initial state
+    highlightNavLink();
 }
 
 // ========================================

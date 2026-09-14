@@ -25,6 +25,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     // Sync with pre-paint FOUC script — must read persisted preference
     setTheme(initial);
     document.documentElement.setAttribute("data-theme", initial);
+    document.documentElement.classList.toggle("dark", initial === "dark");
     setMounted(true);
 
     const mql = window.matchMedia("(prefers-color-scheme: dark)");
@@ -33,6 +34,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         const next: Theme = e.matches ? "dark" : "light";
         setTheme(next);
         document.documentElement.setAttribute("data-theme", next);
+        document.documentElement.classList.toggle("dark", next === "dark");
       }
     };
     mql.addEventListener("change", handler);
@@ -43,6 +45,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setTheme((prev) => {
       const next: Theme = prev === "light" ? "dark" : "light";
       document.documentElement.setAttribute("data-theme", next);
+      document.documentElement.classList.toggle("dark", next === "dark");
       localStorage.setItem("theme", next);
       return next;
     });

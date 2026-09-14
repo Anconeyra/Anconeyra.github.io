@@ -55,7 +55,7 @@ export const metadata: Metadata = {
 };
 
 // Inline script to set data-theme before first paint (FOUC prevention)
-const foucScript = `(function(){try{var t=localStorage.getItem('theme');var m=window.matchMedia('(prefers-color-scheme: dark)').matches;var c=t||(m?'dark':'light');document.documentElement.setAttribute('data-theme',c);}catch(e){try{document.documentElement.setAttribute('data-theme',window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');}catch(_){document.documentElement.setAttribute('data-theme','light');}}})();`;
+const foucScript = `(function(){try{var t=localStorage.getItem('theme');var m=window.matchMedia('(prefers-color-scheme: dark)').matches;var c=t||(m?'dark':'light');document.documentElement.setAttribute('data-theme',c);if(c==='dark'){document.documentElement.classList.add('dark');}else{document.documentElement.classList.remove('dark');}}catch(e){try{var d=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',d);if(d==='dark'){document.documentElement.classList.add('dark');}}catch(_){document.documentElement.setAttribute('data-theme','light');}}})();`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
