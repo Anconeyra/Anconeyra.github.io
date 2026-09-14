@@ -266,8 +266,8 @@ export const heroData: HeroData = {
   badge: "Disponible para oportunidades",
   greeting: "¡Hola! Soy",
   name: "Frank Anconeyra",
-  subtitle: "Full-Stack Developer | Cybersecurity Analyst",
-  description: "Ingeniero de sistemas resilientes e inteligentes que conectan personas, dispositivos y datos de forma segura y escalable.",
+  subtitle: "Software Engineer | Cybersecurity Analyst",
+  description: "Bachiller de TECSUP que construye sistemas resilientes e inteligentes que conectan personas, dispositivos y datos de forma segura y escalable.",
   ctaPrimary: { label: "Ver Proyectos", href: "#proyectos" },
   ctaSecondary: { label: "Contactar", href: "#contacto" },
 };
@@ -275,10 +275,10 @@ export const heroData: HeroData = {
 export const aboutData: AboutData = {
   title: "Sobre Mí",
   name: "Frank Anconeyra",
-  role: "Full-Stack Developer & Cybersecurity Analyst",
+  role: "Software Engineer | Cybersecurity Analyst · Bachiller TECSUP",
   cvHref: "https://drive.google.com/file/d/1ymySfictqgYqEMlSGUziEUyjWUrGOwuK/view?usp=drive_link",
   paragraphs: [
-    "Soy un desarrollador Full-Stack y analista de ciberseguridad con experiencia en la creación de aplicaciones web, móviles y sistemas seguros. Me especializo en transformar ideas complejas en soluciones digitales intuitivas, eficientes y protegidas.",
+    "Soy Software Engineer y analista de ciberseguridad, bachiller de TECSUP, con experiencia en la creación de aplicaciones web, móviles y sistemas seguros. Me especializo en transformar ideas complejas en soluciones digitales intuitivas, eficientes y protegidas.",
     "Mi enfoque combina creatividad técnica, metodologías ágiles y mejores prácticas de seguridad para entregar productos de alta calidad que superan las expectativas del usuario y resisten amenazas modernas.",
   ],
 };
