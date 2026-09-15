@@ -81,14 +81,14 @@ export default function CustomCursor() {
         ref={cursorRef}
         id="cursor"
         aria-hidden="true"
-        className="cursor pointer-events-none fixed z-[9999] h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-[var(--primary-color)] to-[var(--secondary-color)] mix-blend-difference transition-[width,height,background] duration-300 max-[768px]:hidden"
+        className="cursor pointer-events-none fixed z-[9999] h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-[var(--primary-color)] to-[var(--secondary-color)] mix-blend-difference transition-[width,height,background,transform] duration-300 max-[768px]:hidden"
         style={{ left: -100, top: -100 }}
       />
       <div
         ref={followerRef}
         id="cursor-follower"
         aria-hidden="true"
-        className="cursor-follower pointer-events-none fixed z-[9998] h-10 w-10 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[var(--primary-color)] opacity-50 transition-all duration-150 ease-out max-[768px]:hidden"
+        className="cursor-follower pointer-events-none fixed z-[9998] h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[var(--primary-color)] opacity-40 transition-all duration-150 ease-out max-[768px]:hidden"
         style={{ left: -100, top: -100 }}
       />
     </>

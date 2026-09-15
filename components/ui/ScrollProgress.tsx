@@ -37,7 +37,7 @@ export default function ScrollProgress() {
     <div
       id="scroll-progress"
       aria-hidden="true"
-      className="fixed top-0 left-0 z-[9999] h-1 bg-[linear-gradient(90deg,#667eea_0%,#764ba2_50%,#667eea_100%)] bg-[length:200%_100%] transition-[width] duration-100 ease-out"
+      className="fixed top-0 left-0 z-[9999] h-1 bg-[linear-gradient(90deg,#667eea_0%,#764ba2_50%,#667eea_100%)] bg-[length:200%_100%] animate-gradient-x transition-[width] duration-100 ease-out"
       style={{ width: `${width}%` }}
     />
   );

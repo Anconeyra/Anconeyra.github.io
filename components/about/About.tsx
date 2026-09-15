@@ -1,6 +1,7 @@
 import { aboutData, techGroups } from "@/lib/data/portfolio";
 import TechCarousel from "./TechCarousel";
 import StatsCounter from "./StatsCounter";
+import GsapReveal from "@/components/ui/GsapReveal";
 
 const HIGHLIGHTS = ["superan las expectativas del usuario", "resisten amenazas modernas"];
 
@@ -19,30 +20,37 @@ function renderWithHighlights(text: string) {
 
 export default function About() {
   return (
-    <section id="sobre-mi" className="bg-[var(--bg-primary)] px-4 py-20 sm:px-6 lg:px-8" aria-labelledby="sobre-mi-heading">
-      <div className="mx-auto max-w-6xl">
-        <p className="font-mono text-xs font-bold tracking-[0.2em] text-[var(--primary-color)] uppercase">01 · Perfil</p>
-        <h2 id="sobre-mi-heading" className="mt-2 text-3xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-4xl">
-          {aboutData.title}
-        </h2>
-        <div className="mt-3 h-1 w-16 rounded-full bg-gradient-to-r from-[var(--primary-color)] to-sky-500" aria-hidden="true" />
+    <section id="sobre-mi" className="overflow-hidden bg-[var(--bg-primary)] px-4 pt-20 pb-16 sm:px-6 lg:px-8 lg:pt-20 lg:pb-20" aria-labelledby="sobre-mi-heading">
+      <div className="mx-auto max-w-7xl">
+        <GsapReveal variant="blur" className="block w-full">
+          <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
+            <h2 id="sobre-mi-heading" className="w-full text-center text-4xl font-extrabold tracking-tight text-balance text-[var(--text-primary)] sm:text-5xl">
+              {aboutData.title}
+            </h2>
+            <p className="mt-4 w-full text-center leading-relaxed text-balance text-[var(--text-secondary)]">
+              Datos sobre mí, mi stack y otros datos.
+            </p>
+            <div className="mx-auto mt-4 h-1 w-20 rounded-full bg-gradient-to-r from-[var(--primary-color)] to-sky-500" aria-hidden="true" />
+          </div>
+        </GsapReveal>
 
-        <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:items-start">
-          {/* Carousel */}
-          <div className="order-2 lg:order-1 lg:col-span-5">
-            <div className="lg:sticky lg:top-28">
+        <div className="mt-10 grid items-center gap-10 lg:mt-12 lg:grid-cols-2 lg:gap-14">
+          {/* Carousel — vertically centered with air top & bottom */}
+          <div className="order-2 flex justify-center lg:order-1">
+            <GsapReveal delay={0.12} className="flex w-full max-w-[380px] justify-center">
               <TechCarousel />
-            </div>
+            </GsapReveal>
           </div>
 
           {/* Text */}
-          <div className="order-1 lg:order-2 lg:col-span-7">
+          <GsapReveal className="order-1 lg:order-2">
+          <div>
             <div className="about-header">
-              <h3 className="text-2xl font-bold tracking-tight text-[var(--text-primary)]">{aboutData.name}</h3>
-              <p className="mt-1.5 inline-flex flex-wrap items-center gap-2 text-sm font-semibold text-[var(--primary-color)]">
-                <span className="rounded-full bg-[var(--primary-color)]/10 px-3 py-1">{aboutData.role}</span>
+              <h3 className="text-2xl font-bold tracking-tight text-[var(--text-primary)] sm:text-3xl">{aboutData.name}</h3>
+              <p className="mt-3 text-sm leading-relaxed font-semibold text-[var(--primary-color)]">
+                <span className="inline-block rounded-full bg-[var(--primary-color)]/10 px-4 py-1.5">{aboutData.role}</span>
               </p>
-              <div className="mt-4">
+              <div className="mt-6">
                 <a
                   href={aboutData.cvHref}
                   target="_blank"
@@ -57,7 +65,7 @@ export default function About() {
               </div>
             </div>
 
-            <div className="mt-6 max-w-2xl space-y-4 text-[15px] leading-7 text-pretty text-[var(--text-secondary)]">
+            <div className="mt-8 max-w-2xl space-y-5 text-[15px] leading-8 text-pretty text-[var(--text-secondary)] sm:text-base sm:leading-8">
               {aboutData.paragraphs.map((p, idx) => (
                 <p key={p.slice(0, 20)} className={idx === 0 ? "font-medium text-[var(--text-primary)]/90" : undefined}>
                   {renderWithHighlights(p)}
@@ -66,12 +74,12 @@ export default function About() {
             </div>
 
             {/* Tech Stack — 4 groups */}
-            <div className="tech-stack mt-8">
+            <div className="tech-stack mt-10">
               <h4 className="tech-stack-title flex items-center gap-2.5 text-lg font-extrabold tracking-tight text-[var(--text-primary)]">
                 <span className="h-6 w-1.5 rounded-full bg-gradient-to-b from-indigo-500 to-sky-500" aria-hidden="true" />
                 Tech Stack
               </h4>
-              <div className="tech-groups mt-4 grid gap-4 sm:grid-cols-2">
+              <div className="tech-groups mt-5 grid gap-5 sm:grid-cols-2">
                 {techGroups.map((g, gi) => (
                   <div
                     key={g.title}
@@ -120,8 +128,11 @@ export default function About() {
               </div>
             </div>
 
-            <StatsCounter />
+            <div className="mt-10 border-t border-[var(--border-color)]/70 pt-8">
+              <StatsCounter />
+            </div>
           </div>
+          </GsapReveal>
         </div>
       </div>
     </section>

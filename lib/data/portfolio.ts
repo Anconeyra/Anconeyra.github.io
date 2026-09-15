@@ -1,5 +1,4 @@
-// Typed content source — single source of truth extracted from js/main.js DATA + index.html (ES preserved)
-// Stats preserved: 14 repositories / 15 certifications / 5 domains
+// Typed content source — single source of truth for all portfolio data
 
 export interface SkillCategory {
   name: string;
@@ -84,8 +83,18 @@ export interface ContactData {
   whatsappNumber: string;
 }
 
+export interface Experience {
+  company: string;
+  href: string;
+  role: string;
+  period: string;
+  meta?: string;
+  description: string;
+  tags: string[];
+}
+
 // ---------------------------------------------------------------------------
-// Raw DATA from js/main.js — typed
+// Raw DATA
 // ---------------------------------------------------------------------------
 
 export const skills: SkillCategory[] = [
@@ -97,7 +106,7 @@ export const skills: SkillCategory[] = [
   { name: "Cybersecurity", items: ["Wireshark", "OWASP", "Kali Linux", "Metasploit", "Snyk"] },
 ];
 
-// Display cards for Skills section (ES descriptions preserved from index.html)
+// Display cards for Skills section
 export const skillCards: SkillCard[] = [
   {
     icon: "fa-laptop-code",
@@ -241,6 +250,57 @@ export const certifications: CertificationCategory[] = [
   },
 ];
 
+export const experiences: Experience[] = [
+  {
+    company: "Grupo Roberts",
+    href: "https://dercocenterroberts.pe/",
+    role: "Soporte Técnico & Desarrollo de Módulos",
+    period: "set. 2026 – actualidad",
+    description:
+      "Encargado del soporte técnicospecializado y desarrollo de nuevos módulos que integran sistemas internos de la empresa. Implemento comunicaciones entre sistemas para optimizar procesos operativos.",
+    tags: ["Soporte técnico", "Mejora continua"],
+  },
+  {
+    company: "Peru Intercorp Corporation",
+    href: "https://peruintercorp.com/",
+    role: "Desarrollador de Software Full-Stack",
+    period: "feb. 2026 – ago. 2026",
+    description:
+      "Desarrollé proyectos desde cero transformando ideas del cliente en soluciones completas: backend con NestJS, base de datos en PostgreSQL con Docker, web con Astro y app móvil con Kotlin en Android Studio.",
+    tags: ["Astro", "NestJS", "PostgreSQL", "Docker", "Kotlin", "Android"],
+  },
+  {
+    company: "Consejeros y Corredores de Seguros",
+    href: "https://www.consejeros.com.pe/",
+    role: "Desarrollador de Soluciones Tecnológicas · Prácticas",
+    period: "ago. 2025 – nov. 2025",
+    meta: "Yanahuara, Arequipa · Presencial",
+    description:
+      "Desarrollé nuevas funcionalidades y módulos web bajo estándares de seguridad rigurosos utilizando C#, Angular y SQL Server, aplicando buenas prácticas de ingeniería y arquitectura limpia.",
+    tags: ["C#", "Angular", "SQL Server", "ASP.NET"],
+  },
+  {
+    company: "Grupo Moss",
+    href: "https://moss.com.pe/",
+    role: "Desarrollo de diseño web · Pasantía",
+    period: "dic. 2024 – ene. 2025",
+    meta: "Arequipa · En remoto",
+    description:
+      "Sistema de coevaluación donde los profesores crean canales y los estudiantes se califican entre sí. API RESTful con Flask, datos flexibles en MongoDB y frontend en React.",
+    tags: ["React", "Flask", "MongoDB"],
+  },
+  {
+    company: "Grupo Moss",
+    href: "https://moss.com.pe/",
+    role: "Diseño de base de datos · Pasantía",
+    period: "jul. 2024 – ago. 2024",
+    meta: "Arequipa · Híbrido",
+    description:
+      "Sistema para un evento deportivo multidisciplinario: base normalizada en MySQL, API con Django y frontend dinámico en React con Axios y Redux.",
+    tags: ["React", "Django", "MySQL", "Redux"],
+  },
+];
+
 export const stats: Stat[] = [
   { value: 14, label: "Repositorios" },
   { value: 15, label: "Certificaciones" },
@@ -252,6 +312,7 @@ export const navLinks: NavLink[] = [
   { href: "#sobre-mi", label: "Sobre Mí" },
   { href: "#habilidades", label: "Habilidades" },
   { href: "#certificaciones", label: "Certificaciones" },
+  { href: "#experiencia", label: "Experiencia" },
   { href: "#proyectos", label: "Proyectos" },
   { href: "#contacto", label: "Contacto" },
 ];

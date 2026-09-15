@@ -13,6 +13,7 @@
   --animate-float: float 3s ease-in-out infinite;
   --animate-float-badge: floatBadge 3s ease-in-out infinite;
   --animate-terminal-pulse: terminalPulse 2s ease-in-out infinite;
+  --animate-gradient-x: gradient-x 4s linear infinite;
 
   @keyframes float {
     0%, 100% { transform: translateY(0); }
@@ -27,6 +28,11 @@
   @keyframes terminalPulse {
     0%, 100% { box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3); }
     50% { box-shadow: 0 4px 25px rgba(16, 185, 129, 0.6); }
+  }
+
+  @keyframes gradient-x {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
   }
 }
 
@@ -99,14 +105,46 @@
 /* ========================================
    Base Reset & Typography
    ======================================== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@layer base {
+  /* NOTE: this reset MUST live in @layer base. Unlayered author CSS beats
+     Tailwind v4 layered utilities in the cascade, so a bare star rule here
+     zeroes every margin and padding utility site-wide (this silently broke
+     centering in #certificaciones: mx-auto computed to 0 and the grid sat
+     flush-left at x=0). Inside @layer base, utilities correctly win. */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 88px;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--primary-color) 28%, transparent);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+  border-radius: 8px;
+  border: 2px solid var(--bg-secondary);
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
 }
 
 body {
@@ -118,19 +156,36 @@ body {
   position: relative;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
+@layer base {
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
 }
 
-ul {
-  list-style: none;
+/* ========================================
+   Custom Cursor — interactive hover states
+   Tailwind v4 centers with the `translate` property,
+   so these rules only override `transform` (scale).
+   ======================================== */
+.cursor.hover {
+  transform: scale(0.55);
+  background: var(--accent-color);
 }
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+.cursor-follower.hover {
+  transform: scale(1.9);
+  border-color: var(--accent-color);
+  opacity: 0.15;
 }
 
 /* ========================================

@@ -1,6 +1,4 @@
-import { socialLinks } from "@/lib/data/portfolio";
-
-function FooterIcon({ label }: { label: string }) {
+export default function SocialIcon({ label }: { label: string }) {
   const lower = label.toLowerCase();
   if (lower.includes("github")) {
     return (
@@ -20,6 +18,7 @@ function FooterIcon({ label }: { label: string }) {
       </svg>
     );
   }
+  // Default / Email
   return (
     <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
       <path
@@ -28,40 +27,5 @@ function FooterIcon({ label }: { label: string }) {
         d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
       />
     </svg>
-  );
-}
-
-export default function Footer() {
-  const year = new Date().getFullYear();
-  return (
-    <footer className="border-t border-[var(--border-color)] bg-[var(--bg-secondary)]">
-      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center justify-between gap-5 sm:flex-row">
-          <div className="flex items-center gap-3">
-            <span className="flex h-10 w-28 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-white px-1.5 ring-1 ring-black/10 dark:ring-white/20">
-              <img src="/img/logo.png" alt="Nyraroot Logo" className="h-9 w-full object-contain object-center" />
-            </span>
-            <p className="text-sm text-[var(--text-secondary)]">
-              &copy; {year} Frank Anconeyra · Bachiller TECSUP
-            </p>
-          </div>
-          <div className="flex items-center gap-2.5">
-            {socialLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={link.label}
-                title={link.label}
-                className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--text-secondary)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--primary-color)] hover:text-[var(--primary-color)] hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary-color)]"
-              >
-                <FooterIcon label={link.label} />
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-    </footer>
   );
 }

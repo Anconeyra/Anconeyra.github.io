@@ -4,6 +4,7 @@ import Hero from "@/components/hero/Hero";
 import About from "@/components/about/About";
 import SkillsGrid from "@/components/skills/SkillsGrid";
 import CertificationsGrid from "@/components/certifications/CertificationsGrid";
+import ExperienceCarousel from "@/components/experience/ExperienceCarousel";
 import ProjectsGrid from "@/components/projects/ProjectsGrid";
 import Terminal from "@/components/terminal/Terminal";
 import ContactForm from "@/components/contact/ContactForm";
@@ -19,6 +20,7 @@ export default function Home() {
         <About />
         <SkillsGrid />
         <CertificationsGrid />
+        <ExperienceCarousel />
         <ProjectsGrid />
         <ContactForm />
       </main>

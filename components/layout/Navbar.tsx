@@ -66,15 +66,16 @@ export default function Navbar() {
       }`}
       aria-label="Navegación principal"
     >
-      <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-10">
         <a
           href="#"
           className="flex shrink-0 items-center gap-3 rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary-color)]"
           aria-label="Ir al inicio"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/img/logo.png" alt="Nyraroot Logo" className="h-14 w-36 shrink-0 object-cover object-center" />
-          <span className="text-2xl font-bold tracking-tight text-[var(--text-primary)] lg:text-3xl">
+          <span className="flex h-12 w-auto shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white px-2 shadow-md ring-1 ring-black/10 dark:ring-white/20">
+            <img src="/img/logo.png" alt="Nyraroot Logo" className="h-11 w-auto object-contain object-center" />
+          </span>
+          <span className="text-2xl font-bold tracking-tight text-[var(--text-primary)] xl:text-3xl">
             Nyraroot
           </span>
         </a>
@@ -99,14 +100,14 @@ export default function Navbar() {
           id="nav-menu"
           className={`${
             open ? "flex" : "hidden"
-          } absolute left-0 right-0 top-full flex-col gap-1 bg-[var(--bg-primary)] px-4 py-4 shadow-lg md:static md:flex md:flex-row md:items-center md:gap-7 md:bg-transparent md:p-0 md:shadow-none lg:gap-8`}
+          } absolute left-0 right-0 top-full flex-col gap-1 bg-[var(--bg-primary)] px-4 py-4 shadow-lg md:static md:flex md:flex-row md:items-center md:gap-2 md:bg-transparent md:p-0 md:shadow-none lg:gap-4 xl:gap-6`}
         >
           {navLinks.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className={`nav-link block rounded-md px-3 py-2 text-base font-medium tracking-wide transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary-color)] lg:text-lg ${
+                className={`nav-link block rounded-md px-2 py-2 text-[15px] font-medium tracking-wide whitespace-nowrap transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary-color)] lg:text-base xl:px-3 xl:text-lg ${
                   activeId === link.href
                     ? "bg-[var(--primary-color)] text-white md:bg-transparent md:text-[var(--primary-color)]"
                     : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] md:hover:bg-transparent"

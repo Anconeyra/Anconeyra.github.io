@@ -60,7 +60,7 @@ export default function TechCarousel() {
 
   return (
     <div
-      className="tech-carousel relative mx-auto flex min-h-[320px] w-full max-w-[360px] flex-col overflow-hidden rounded-3xl border border-[var(--border-color)] bg-gradient-to-br from-indigo-100/80 via-[var(--card-bg)] to-sky-100/70 p-6 shadow-xl shadow-indigo-500/10 dark:from-indigo-500/15 dark:via-[var(--card-bg)] dark:to-sky-500/10"
+      className="tech-carousel relative flex min-h-[360px] w-full flex-col rounded-3xl border border-[var(--border-color)] bg-gradient-to-br from-indigo-100/80 via-[var(--card-bg)] to-sky-100/70 p-6 shadow-xl shadow-indigo-500/10 sm:p-8 dark:from-indigo-500/15 dark:via-[var(--card-bg)] dark:to-sky-500/10"
       onMouseEnter={() => {
         pausedRef.current = true;
       }}
@@ -71,14 +71,17 @@ export default function TechCarousel() {
       aria-label="Carrusel de lenguajes y tecnologías"
       aria-roledescription="carousel"
     >
-      <div className="flex items-center justify-between">
-        <span className="h-8 w-8 rounded-full border-2 border-indigo-400/60" aria-hidden="true" />
-        <span className="font-mono text-[11px] font-bold tracking-widest text-[var(--text-secondary)]">
+      <div className="flex items-center justify-between gap-3">
+        <span className="inline-flex items-center gap-2 font-mono text-[11px] font-bold tracking-[0.18em] text-[var(--text-secondary)] uppercase">
+          <span className="h-2 w-2 rounded-full bg-gradient-to-r from-indigo-500 to-sky-500" aria-hidden="true" />
+          Stack
+        </span>
+        <span className="rounded-full bg-[var(--bg-primary)]/70 px-2.5 py-1 font-mono text-[11px] font-bold tracking-widest text-[var(--text-secondary)]">
           {String(active + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
         </span>
       </div>
 
-      <div className="relative flex flex-1 items-center justify-center py-6" aria-live="polite">
+      <div className="relative flex h-60 items-center justify-center py-4" aria-live="polite">
         {slides.map((s, i) => (
           <div
             key={s.label}
@@ -101,7 +104,7 @@ export default function TechCarousel() {
         ))}
       </div>
 
-      <div className="flex flex-wrap items-center justify-center gap-1.5" role="tablist" aria-label="Indicadores del carrusel">
+      <div className="mt-auto flex flex-wrap items-center justify-center gap-2 px-2 pt-4 pb-1" role="tablist" aria-label="Indicadores del carrusel">
         {slides.map((s, i) => (
           <button
             key={s.label}
@@ -115,10 +118,10 @@ export default function TechCarousel() {
                 handleDotClick(i);
               }
             }}
-            className={`h-2 rounded-full transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary-color)] ${
+            className={`h-1.5 rounded-full transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary-color)] ${
               i === active
-                ? "w-6 bg-gradient-to-r from-indigo-500 to-sky-500"
-                : "w-2 bg-[var(--border-color)] hover:bg-[var(--text-light)]"
+                ? "w-5 bg-gradient-to-r from-indigo-500 to-sky-500"
+                : "w-1.5 bg-[var(--border-color)] hover:bg-[var(--text-light)]"
             }`}
           />
         ))}
