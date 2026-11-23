@@ -1,0 +1,110 @@
+{
+	"schemaVersion": 2,
+	"generatedAt": "2026-11-20T18:30:00.000Z",
+	"title": "Design System: Expediente",
+	"extensions": {
+		"colorMeta": {
+			"security-stock": {
+				"role": "neutral",
+				"displayName": "Security Stock",
+				"canonical": "#e5e8e1",
+				"tonalRamp": ["#1b1d1a", "#33362f", "#4d5147", "#676c60", "#82887b", "#9ea496", "#c2c7bd", "#e5e8e1"]
+			},
+			"ink-blue-black": {
+				"role": "neutral",
+				"displayName": "Ink Blue-Black",
+				"canonical": "#0e1418",
+				"tonalRamp": ["#0e1418", "#1d252b", "#2c363d", "#3b474f", "#4a585f", "#6d7a80", "#9aa5aa", "#cbd1c6"]
+			},
+			"seal-vermilion": {
+				"role": "primary",
+				"displayName": "Seal Vermilion",
+				"canonical": "#b8331c",
+				"tonalRamp": ["#40120a", "#5c1a0e", "#782313", "#942b17", "#b8331c", "#cd5a45", "#e08b7c", "#f3bfb6"]
+			},
+			"guilloche-azure": {
+				"role": "secondary",
+				"displayName": "Guilloche Azure",
+				"canonical": "#2f5d8c",
+				"tonalRamp": ["#0d1c2b", "#142a40", "#1b3856", "#22466b", "#2f5d8c", "#5a82ab", "#8fa9c6", "#c3d1e0"]
+			},
+			"record-green": {
+				"role": "tertiary",
+				"displayName": "Record Green",
+				"canonical": "#14563f",
+				"tonalRamp": ["#05170f", "#0a2a1e", "#0f3d2c", "#14563f", "#2b7559", "#559a7e", "#8bbfab", "#c6ded4"]
+			}
+		},
+		"typographyMeta": {
+			"display": { "displayName": "Display", "purpose": "The name, once, on the cover only." },
+			"headline": { "displayName": "Headline", "purpose": "Section titles." },
+			"body": { "displayName": "Body", "purpose": "Prose at 68ch max." },
+			"label": { "displayName": "Label", "purpose": "Machine data: serials, fields, credentials, console." }
+		},
+		"shadows": [
+			{
+				"name": "slip-offset",
+				"value": "6px 6px 0 rgba(14, 20, 24, 0.12)",
+				"purpose": "Command palette only — a loose slip laid over the document."
+			}
+		],
+		"motion": [
+			{ "name": "ease-register", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "The one authored easing, exponential ease-out." },
+			{ "name": "press", "value": "620ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Stamp and plaque landing." },
+			{ "name": "rise", "value": "700ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Cover lines registering." }
+		],
+		"breakpoints": [
+			{ "name": "sm", "value": "560px" },
+			{ "name": "md", "value": "700px" },
+			{ "name": "lg", "value": "900px" },
+			{ "name": "nav", "value": "1020px" }
+		],
+		"narrative": {
+			"northStar": "The Issued Document",
+			"overview": "A security-printed dossier read on a screen: guilloche, serials, seals and microtext, because security printing is the physical ancestor of the subject's work.",
+			"keyCharacteristics": [
+				"Paper ground, never dark mode.",
+				"One hot colour, vermilion, rationed to stamps and the primary action.",
+				"Line-work as ornament: parametric guilloche, hairlines, perforations, microtext.",
+				"Two type voices: Archivo and JetBrains Mono.",
+				"Content visible by default; motion is a brief registration."
+			],
+			"rules": [
+				{ "section": "Colors", "name": "The One Seal Rule", "body": "Vermilion appears on \u22646% of any viewport; a second use is a mistake." },
+				{ "section": "Colors", "name": "The Green Means Verified Rule", "body": "Record green never accents or decorates; it marks the word verified and its tick only." },
+				{ "section": "Typography", "name": "The No Eyebrow Rule", "body": "Section headings stand alone; the index number sits in the left margin, never above the heading." }
+			],
+			"dos": [
+				"Keep the sheet borders and the index column.",
+				"Ration vermilion to one assertion per viewport.",
+				"Keep the guilloche at \u226420% behind text.",
+				"Use tabular numerals for serials, years and counts.",
+				"Keep all content visible with JavaScript disabled."
+			],
+			"donts": [
+				"Don't add a dark theme; the world is paper.",
+				"Don't reintroduce icon tiles, gradient text, particle fields or a centred hero.",
+				"Don't put a kicker above a heading.",
+				"Don't use monospace for prose.",
+				"Don't animate content in from opacity: 0."
+			]
+		},
+		"components": [
+			{
+				"name": "button-primary",
+				"html": "<button class=\"btn btn--seal\">Escribir por WhatsApp ↗</button>",
+				"css": ".btn{display:inline-flex;align-items:center;gap:.55rem;padding:.72rem 1.15rem;font-family:'JetBrains Mono',monospace;font-size:.6875rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border:1px solid #0e1418;background:transparent;color:#0e1418;cursor:pointer;border-radius:2px}.btn--seal{background:#b8331c;border-color:#b8331c;color:#eef0ea;box-shadow:0 2px 0 #8d2614}.btn--seal:hover{background:#8d2614;border-color:#8d2614}"
+			},
+			{
+				"name": "ledger-row",
+				"html": "<div style=\"display:grid;grid-template-columns:11rem 1fr 5rem;gap:1rem;padding:.62rem .6rem;border-bottom:1px solid #cbd1c6\"><span style=\"font-family:'JetBrains Mono',monospace;font-size:.625rem;color:#59636b\">Cisco</span><span style=\"color:#0e1418\">Endpoint Security</span><span style=\"font-family:'JetBrains Mono',monospace;font-size:.6875rem;color:#59636b;text-align:right\">2025</span></div>",
+				"css": "body{background:#e5e8e1;font-family:Archivo,sans-serif}"
+			},
+			{
+				"name": "field-underline",
+				"html": "<label style=\"display:grid;grid-template-columns:6rem 1fr;gap:.75rem;padding:.45rem 0;border-bottom:1px solid #cbd1c6\"><span style=\"font-family:'JetBrains Mono',monospace;font-size:.5625rem;letter-spacing:.16em;text-transform:uppercase;color:#59636b\">Nombre</span><input style=\"border:0;background:transparent;outline:none;font-size:.9375rem;color:#0e1418\" placeholder=\"Nombre y apellido\"/></label>",
+				"css": "input:focus{caret-color:#b8331c}"
+			}
+		]
+	}
+}
