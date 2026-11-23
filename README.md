@@ -1,29 +1,44 @@
-# VercelFrank
+# vercelfrank — Nyraroot Unix
 
-Portafolio profesional de **Frank Anconeyra** — Full-Stack Developer & Cybersecurity Analyst.
+Portafolio de **Frank Anconeyra** — Full-Stack Developer & Cybersecurity Analyst (Arequipa, Perú).
 
-Reconstruido con **SvelteKit 5** (runes mode) + TypeScript, tomando como referencia
-`anconeyra.github.io` pero con stack moderno optimizado para **Vercel**.
+La página es un escritorio Linux: panel del sistema, una ventana de aplicación con chrome real,
+dock, iconos de escritorio y widgets. Cada sección es una aplicación.
 
 ## Stack
 
-- [SvelteKit 5](https://svelte.dev/docs/kit) (runes mode)
-- TypeScript
+- [SvelteKit 5](https://svelte.dev/docs/kit) (runes) + TypeScript
 - Vite 8
 - `@sveltejs/adapter-vercel` — deploy nativo a Vercel
-- Font Awesome 6 + Google Fonts (Poppins)
+- Tipografías: Cantarell (sistema) y JetBrains Mono (datos)
 
-## Caracteristicas
+## Aplicaciones
 
-- Landing page completa (Hero, Sobre Mi, Habilidades, Certificaciones, Proyectos, Contacto)
-- Toggle de tema claro/oscuro (persistido en localStorage)
-- Terminal interactiva (comando `help` para ver los comandos)
-- Particle canvas en el hero
-- Carrusel de tecnologias
-- Contadores de estadisticas animados
-- Scroll progress bar + boton volver arriba
-- Formulario de contacto que abre WhatsApp
-- Totalmente responsive
+| App | Contenido |
+| --- | --- |
+| Terminal | shell interactiva (`help`, `experiencia`, `casos`, `neofetch`) |
+| Perfil | identidad, ficha y accesos directos |
+| Experiencia | 5 puestos con fecha, rol y stack |
+| Proyectos | 6 sistemas con enlace al repositorio |
+| Credenciales | Cisco, AWS y Python |
+| Seguridad | prácticas, credenciales y auditoría de la propia página |
+| Stack | 36 tecnologías con su marca real |
+| Archivos | gestor TUI: cada carpeta abre su aplicación |
+| Monitor | lecturas reales del dispositivo |
+| Manual | `man frank` |
+| Ajustes | fondos de escritorio con preferencia guardada |
+| Contacto | formulario que abre WhatsApp + canales directos |
+
+## Atajos
+
+| Tecla | Acción |
+| --- | --- |
+| `⌘K` / `Ctrl+K` | lanzador de aplicaciones |
+| `1` … `8` | cambiar de aplicación |
+| `Esc` | cerrar la ventana activa |
+| doble click en la barra | maximizar / restaurar |
+
+La ventana se puede arrastrar desde su barra de título.
 
 ## Desarrollo
 
@@ -32,26 +47,19 @@ npm install
 npm run dev
 ```
 
-## Build y preview
+## Build
 
 ```sh
 npm run build
 npm run preview
 ```
 
-## Deploy a Vercel
+## Deploy
 
-El proyecto ya usa `@sveltejs/adapter-vercel`. Opciones:
+El proyecto usa `@sveltejs/adapter-vercel`. Importá el repo en
+[vercel.com/new](https://vercel.com/new) o corré `vercel --prod`.
 
-1. **Dashboard**: Importa el repo en [vercel.com](https://vercel.com) — Vercel detecta el framework automaticamente.
-2. **CLI**:
-   ```sh
-   npm i -g vercel
-   vercel
-   ```
-   El framework preset, build command (`npm run build`) y output se configuran solos.
+## Documentación de diseño
 
-### Nota sobre la imagen de perfil
-
-La foto actual es un placeholder (`static/img/tu-foto.svg`). Reemplazarla por la foto real:
-colocala en `static/img/tu-foto.jpg` y actualiza el `src` en `src/lib/components/Hero.svelte`.
+- `PRODUCT.md` — verdad de producto: usuarios, propósito, límites.
+- `DESIGN.md` — sistema visual: color, tipografía, componentes y reglas.
