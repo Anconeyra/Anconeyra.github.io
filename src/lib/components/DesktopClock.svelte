@@ -3,7 +3,6 @@
 
 	let time = $state('··:··');
 	let date = $state('');
-	let ready = $state(false);
 
 	onMount(() => {
 		const tick = () => {
@@ -22,7 +21,6 @@
 			})
 				.format(now)
 				.replace(/^\p{L}/u, (c) => c.toUpperCase());
-			ready = true;
 		};
 		tick();
 		const id = window.setInterval(tick, 15000);
@@ -31,11 +29,10 @@
 
 </script>
 
-<div class="dclock" class:is-ready={ready}>
+<div class="dclock">
 	<p class="dclock__os" aria-hidden="true">Nyraroot Unix 1.1</p>
 	<p class="dclock__time" aria-hidden="true">{time}</p>
 	<p class="dclock__date" aria-hidden="true">{date}</p>
-
 
 </div>
 
@@ -47,12 +44,6 @@
 		transform: translateX(-50%);
 		z-index: 2;
 		text-align: center;
-		opacity: 0;
-		transition: opacity 600ms var(--ease);
-	}
-
-	.dclock.is-ready {
-		opacity: 1;
 	}
 
 	.dclock__os {

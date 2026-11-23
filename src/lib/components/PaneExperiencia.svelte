@@ -35,7 +35,18 @@
 
 				<div class="job__body">
 					<div class="job__top">
-						<h2 class="job__name">{job.company}</h2>
+						<h2 class="job__name">
+							{job.company}
+							{#if job.url}
+								<a
+									class="job__repo"
+									href={job.url}
+									target="_blank"
+									rel="noopener"
+									aria-label="Repositorio de {job.company}, abre en una pestaña nueva">repo ↗</a
+								>
+							{/if}
+						</h2>
 						<span class="job__period">{job.period}</span>
 					</div>
 

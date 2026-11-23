@@ -6,7 +6,6 @@
 	let title = $state('');
 	let cells = $state<(number | null)[]>([]);
 	let today = $state(-1);
-	let ready = $state(false);
 
 	onMount(() => {
 		const now = new Date();
@@ -27,11 +26,10 @@
 
 		cells = out;
 		today = now.getDate();
-		ready = true;
 	});
 </script>
 
-<aside class="dcal" class:is-ready={ready} aria-label="Calendario">
+<aside class="dcal" aria-label="Calendario">
 	<p class="dcal__title">{title}</p>
 
 	<div class="dcal__grid dcal__dow" aria-hidden="true">
@@ -64,12 +62,6 @@
 		font-size: 10px;
 		color: rgba(234, 238, 247, 0.7);
 		pointer-events: none;
-		opacity: 0;
-		transition: opacity 500ms var(--ease) 260ms;
-	}
-
-	.dcal.is-ready {
-		opacity: 1;
 	}
 
 	.dcal__title {

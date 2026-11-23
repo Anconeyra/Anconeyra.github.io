@@ -21,7 +21,7 @@
 	import PaneAjustes from '$lib/components/PaneAjustes.svelte';
 	import PaneStack from '$lib/components/PaneStack.svelte';
 	import PaneContacto from '$lib/components/PaneContacto.svelte';
-	import Launcher from '$lib/components/Launcher.svelte';
+	import AppGrid from '$lib/components/AppGrid.svelte';
 	import { profile, experiences, cases, credentialCount } from '$lib/data';
 
 	let active = $state('');
@@ -129,6 +129,10 @@
 		ajustes: { title: 'ajustes — preferencias', icon: 'sliders', status: 'sesión' }
 	};
 
+	const gridApps = $derived(
+		apps.map((a) => ({ id: a.id, label: a.label, icon: meta[a.id].icon }))
+	);
+
 	const dockApps = $derived(
 		apps
 			.filter((a) => (a as { dock?: boolean }).dock !== false)
@@ -147,6 +151,8 @@
 		} catch {
 			/* private mode */
 		}
+
+		if (window.matchMedia('(max-width: 900px)').matches) active = 'perfil';
 
 		const tick = () => {
 			const now = new Date();
@@ -294,5 +300,5 @@
 
 	<Dock {active} apps={dockApps} onselect={select} />
 
-	<Launcher bind:open={paletteOpen} {apps} onselect={select} />
+	<AppGrid bind:open={paletteOpen} apps={gridApps} onselect={select} />
 </div>

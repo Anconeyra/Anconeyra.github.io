@@ -5,13 +5,11 @@
 	let mem = $state('—');
 	let screen = $state('—');
 	let uptime = $state('0s');
-	let ready = $state(false);
 
 	onMount(() => {
 		const n = navigator as Navigator & { deviceMemory?: number };
 		cores = n.hardwareConcurrency ? `${n.hardwareConcurrency} lógicos` : 'no expuesto';
 		mem = n.deviceMemory ? `≈ ${n.deviceMemory} GB` : 'no expuesta';
-		ready = true;
 
 		const t0 = Date.now();
 		const tick = () => {
@@ -27,7 +25,7 @@
 	});
 </script>
 
-<aside class="conky" class:is-ready={ready} aria-label="Información del sistema">
+<aside class="conky" aria-label="Información del sistema">
 	<p class="conky__head">nyraroot@frank</p>
 	<hr />
 	<dl>
@@ -60,12 +58,6 @@
 		backdrop-filter: blur(6px);
 		-webkit-backdrop-filter: blur(6px);
 		pointer-events: none;
-		opacity: 0;
-		transition: opacity 500ms var(--ease) 160ms;
-	}
-
-	.conky.is-ready {
-		opacity: 1;
 	}
 
 	.conky__head {

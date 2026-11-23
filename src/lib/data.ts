@@ -34,13 +34,14 @@ export const nav = [
 export const experiences = [
 	{
 		company: 'Rsa Creative Hub',
-		role: 'Desarrollador de Software',
+		role: 'Desarrollador Full-Stack',
 		period: 'oct. 2026 — actualidad',
 		place: '',
 		current: true,
-		description: '',
-		tags: [],
-		url: ''
+		description:
+			'Desarrollo del sitio corporativo de RSA Creative Hub: NestJS con render del lado del servidor, vistas Handlebars y despliegue containerizado con Docker.',
+		tags: ['NestJS', 'Handlebars', 'SSR', 'Docker'],
+		url: 'https://github.com/Anconeyra/RSA---LANDING'
 	},
 	{
 		company: 'Grupo Roberts',
